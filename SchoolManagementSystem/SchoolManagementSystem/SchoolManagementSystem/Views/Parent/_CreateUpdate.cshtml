@@ -1,0 +1,272 @@
+﻿@model SchoolManagementSystem.ViewModel.ViewModel.ParentViewModel
+
+@using (Html.BeginForm("Create", "Parent", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- start page title -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Parents</a></li>
+                        <li class="breadcrumb-item active">Add/Update Parent Info</li>
+                    </ol>
+                </div>
+                <h4 class="page-title"><i data-feather="users" class="icon-dual"></i> Add/Update Parent Info:</h4>
+                @Html.HiddenFor(model => model.ParentId)
+                @Html.HiddenFor(model => model.Password)
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Basic Information:-</h4>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.FirstName) } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.FirstName) } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.Email) } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.MaritalStautsID, htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.MaritalStautsID, new SelectList(Model.FillMaritalStauts, "Id", "Text"), "Select Martial Status", htmlAttributes: new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.MaritalStautsID) })
+                            @Html.ValidationMessageFor(model => model.MaritalStautsID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.GenderID, htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.GenderID, new SelectList(Model.FillGender, "Id", "Text"), "Select Gender", htmlAttributes: new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.GenderID) })
+                            @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.CNICNumber, htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.CNICNumber, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.CNICNumber) } })
+                            @Html.ValidationMessageFor(model => model.CNICNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.RelationShipID, htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.RelationShipID, new SelectList(Model.FillRelationShip, "Id", "Text"), "Select RelationShip", htmlAttributes: new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.RelationShipID) })
+                            @Html.ValidationMessageFor(model => model.RelationShipID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @id = "datetime-datepicker", @class = "form-control datepicker", placeholder = @Html.DisplayNameFor(model => model.DateOfBirth) } })
+                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label " })
+                            @*@Html.EditorFor(model => model.ProfileImages, new { htmlAttributes = new { @type = "file", @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.ProfileImages) } })*@
+                            @Html.TextBoxFor(m => m.ImagePath, new { type = "file", @class = "form-control" })
+                            @Html.HiddenFor(model => model.ProfilePicture)
+                        </div>
+                        <div class="form-group col-md-6">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Mailing Information:-</h4>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.MailingAddress, htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.MailingAddress, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.MailingAddress) } })
+                            @Html.ValidationMessageFor(model => model.MailingAddress, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.CountryID, htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.CountryID, new SelectList(Model.FillCountries, "Id", "Text"), "Select Country", htmlAttributes: new { @class = "form-control", @onchange = "CountryChanged(this.value)", placeholder = @Html.DisplayNameFor(model => model.CountryID) })
+                            @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.StateID, htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.StateID, new SelectList(Model.FillStates, "Id", "Text"), "Select State", htmlAttributes: new { @class = "form-control", @onchange = "StateChanged(this.value)", placeholder = @Html.DisplayNameFor(model => model.StateID) })
+                            @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.CityID, htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.CityID, new SelectList(Model.FillCites, "Id", "Text"), "Select City", htmlAttributes: new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.CityID) })
+                            @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.ZipCode) } })
+                            @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.CellNumber, htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.CellNumber, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.CellNumber) } })
+                            @Html.ValidationMessageFor(model => model.CellNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.TelephoneRes, htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.TelephoneRes, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.TelephoneRes) } })
+                            @Html.ValidationMessageFor(model => model.TelephoneRes, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.TelephoneOffice, htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.TelephoneOffice, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.TelephoneOffice) } })
+                            @Html.ValidationMessageFor(model => model.TelephoneOffice, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-12" })
+                            @Html.CheckBoxFor(model => model.IsActive, htmlAttributes: new { @class = "form-control", @data_toggle = "toggle", @data_on = "Active", @data_off = "Inactive", @data_onstyle = "success" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Other Information:-</h4>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.JobDetail, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.JobDetail, htmlAttributes: new { @class = "form-control textcount col-md-12", @cols = "106", @rows = "5", placeholder = @Html.DisplayNameFor(model => model.JobDetail) })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-row">
+                <div class="form-group col-md-12 text-right">
+
+                    <button type="submit" id="save" class="btn btn-success waves-effect waves-light">
+                        <span class="btn-label"><i class="mdi mdi-floppy"></i></span>Save Changes
+                    </button>
+                    <a href="@Url.Action("Index", "Parent")" class="btn btn-soft-secondary waves-effect waves-light">
+                        <span class="btn-label"><i class="fe-x"></i></span>Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+<link href="~/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+
+<script src="~/assets/libs/flatpickr/flatpickr.min.js"></script>
+<link href="~/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+<script src="~/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="~/assets/js/pages/form-pickers.init.js"></script>
+
+
+<script type="text/javascript">
+    var jqStates = null;
+    var jqCity = null;
+    function CountryChanged(CountryID,selectedID) {
+        var dropdown = $('#StateID')
+        $(dropdown).empty()
+        $('<option>Select State</option>').appendTo(dropdown);
+
+        if (CountryID>0 && jqStates != null) {
+            var arr = jQuery.grep(jqStates.states, function (n, i) {
+                return n.ExtraField == CountryID;
+            });
+
+            $(arr).each(function () {
+                $("<option />", {
+                    val: this.Id,
+                    text: this.Text
+
+                }).appendTo(dropdown);
+            });
+            $(dropdown).val(selectedID);
+            //StateChanged(0);
+        }
+        if (selectedID<=0 || CountryID<=0) {
+            StateChanged(0, 0)
+        }
+    }
+    function StateChanged(StateID, selectedID) {
+        var dropdown = $('#CityID');
+        $(dropdown).empty();
+        $('<option>Select City</option>').appendTo(dropdown);
+
+        if (StateID > 0) {
+            var arr = jQuery.grep(jqCity.cities, function (n, i) {
+                return n.ExtraField == StateID;
+            });
+
+            $(arr).each(function () {
+                $("<option />", {
+                    val: this.Id,
+                    text: this.Text
+                }).appendTo(dropdown);
+            });
+            $(dropdown).val(selectedID);
+        }
+    }
+
+    $(document).ready(function () {
+        $(".textcount").keyup(function () {
+            $("#count").text("Characters left: " + (200 - $(this).val().length));
+        });
+        jqStates = JSON.parse('@Html.Raw(Json.Encode(new { states = Model.FillStates }))');
+        jqCity = JSON.parse('@Html.Raw(Json.Encode(new { cities = Model.FillCites }))');
+        var selectedCountry =@Model.CountryID;
+        var selectedState =@Model.StateID;
+        var selectedCity=@Model.CityID;
+
+        CountryChanged(selectedCountry,selectedState);
+        StateChanged(selectedState,selectedCity);
+
+    });
+
+</script>
+

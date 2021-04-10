@@ -1,0 +1,119 @@
+﻿@model IEnumerable<SchoolManagementSystem.ViewModel.ViewModel.ParentViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box py-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">Manage Parents</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                                    <li class="breadcrumb-item active">Starter</li>
+                                </ol>
+                            </div>
+
+                            <a class="btn btn-success waves-effect waves-light" href="@Url.Action("Create", "Parent")">
+                                <span class="btn-label"><i class="mdi mdi-account-plus"></i></span>Add New
+                            </a>
+                            @*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#parentmodel">
+                                    Add
+                                </button>*@
+                            <table id="datatable-buttons" class="table table-centered table-nowrap table-striped table-bordered custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>CNIC Number</th>
+                                        <th>Email</th>
+                                        <th>Date Of Birth</th>
+                                        <th>Created Date</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.FirstName
+                                            </td>
+                                            <td>
+                                                @item.LastName
+                                            </td>
+                                            <td>
+                                                @item.CNICNumber
+                                            </td>
+                                            <td>
+                                                @item.Email
+                                            </td>
+                                            <td>
+                                                @item.DateOfBirth.Value.ToString("dd/MM/yyyy")
+                                            </td>
+                                            <td>
+                                                @item.CreatedDate
+                                            </td>
+                                            <td class="text-center">
+                                                @if (item.IsActive)
+                                                {
+                                                    <span class="badge label-table badge-success">Active</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge label-table badge-danger">Inactive</span>
+                                                }
+
+                                            </td>
+
+                                            <td class="text-center">
+
+                                                <a href="@Url.Action("Edit", "Parent", new {id= @item.ParentId})" class="action-icon">
+                                                    <i class="mdi mdi-square-edit-outline"></i>
+                                                </a>
+                                                <a href="@Url.Action("Details", "Parent", new {id= @item.ParentId})" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                <a href="@Url.Action("Delete", "Parent", new {id= @item.ParentId})" onclick="return confirm('Are you sure you want to delete parent?')" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div>
+            <!-- end row-->
+        </div>
+    </div>
+</div>
+
+
+@section Styles {
+    @Styles.Render("~/css/datatables-css")
+}
+
+@section Scripts {
+    @Scripts.Render("~/js/datatables-js")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            toastr.options.closeButton = true;
+            var messageType = '@ViewBag.MessageType';
+            if (messageType != '') {
+                toastr.success('@ViewBag.Message', 'Success')
+            }
+        });
+
+    </script>
+}

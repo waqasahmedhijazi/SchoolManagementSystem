@@ -1,0 +1,124 @@
+﻿@model SchoolManagementSystem.Model.Entities.ModelEntities.ParentModelEntity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Parents</a></li>
+                    <li class="breadcrumb-item active">Personal Profile</li>
+                </ol>
+            </div>
+            <h4 class="page-title"><i data-feather="users"></i> Personal Profile:</h4>
+            @Html.HiddenFor(model => model.ParentId)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <img src="@Url.Content("~/Uploads/Images/Parent_Profile_Images/")" class="img-fluid rounded-circle z-depth-2" />
+    </div>
+    <div class="col-md-10">
+        <div class="col-md-12"><h4 class="header-title badge badge-secondary col-12 text-left py-2">Basic Information:-</h4></div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">First Name</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.FirstName)</div>
+                        <div class="form-group col-md-3 font-weight-bold">Last Name:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.LastName)</div>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">Email:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.Email)</div>
+                        <div class="form-group col-md-3 font-weight-bold">Marital Stauts:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.MaritalStauts)</div>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">Gender:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.Gender)</div>
+                        <div class="form-group col-md-3 font-weight-bold">CNICNumber:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.CNICNumber)</div>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">Relation Ship:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.RelationShip)</div>
+                        <div class="form-group col-md-3 font-weight-bold">Date Of Birth:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.DateOfBirth)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"><h4 class="header-title badge badge-secondary col-12 text-left py-2">Mailing Information:-</h4></div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">Mailing Address:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.MailingAddress)</div>
+                        <div class="form-group col-md-3 font-weight-bold">Country:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.CountryName)</div>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">State:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.StateName)</div>
+                        <div class="form-group col-md-3 font-weight-bold">City:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.CityName)</div>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">Zip Code:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.ZipCode)</div>
+                        <div class="form-group col-md-3 font-weight-bold">Cell Number:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.CellNumber)</div>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">Telephone Resedence:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.TelephoneRes)</div>
+                        <div class="form-group col-md-3 font-weight-bold">Telephone Office:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.TelephoneOffice)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"><h4 class="header-title badge badge-secondary col-12 text-left py-2">Other Information:-</h4></div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">IP Address:</div>
+                        <div class="form-group col-md-3">@Html.DisplayFor(model => model.IP)</div>
+                        <div class="form-group col-md-3 font-weight-bold">Is Active:</div>
+                        <div class="form-group col-md-3">@Html.CheckBoxFor(model => model.IsActive, htmlAttributes: new { @class = "form-control", @readonly = "true", @data_toggle = "toggle", @data_on = "Active", @data_off = "Inactive", @data_onstyle = "success" })</div>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="form-group col-md-3 font-weight-bold">Job Detail:</div>
+                        <div class="form-group col-md-9">@Html.DisplayFor(model => model.JobDetail)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 ">
+            <div class="form-group  text-right">
+                <a href="@Url.Action("Index", "Parent")" class="btn btn-soft-secondary waves-effect waves-light">
+                    <span class="btn-label"><i class="mdi mdi-arrow-left-bold"></i></span>Back
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            var elem = document.querySelector('.js-switch');
+            var init = new Switchery(elem);
+        });
+
+    </script>*@

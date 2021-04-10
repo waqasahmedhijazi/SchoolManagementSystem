@@ -1,0 +1,820 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SchoolManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblGenCity">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="150" />
+          <Property Name="StateID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblGenCountry">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+          <Property Name="CountryLanguage" Type="varchar" MaxLength="15" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblGenGender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblGenMaritalStauts">
+          <Key>
+            <PropertyRef Name="MaritalStautsID" />
+          </Key>
+          <Property Name="MaritalStautsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaritalStauts" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblGenRelationShip">
+          <Key>
+            <PropertyRef Name="RelationShipID" />
+          </Key>
+          <Property Name="RelationShipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RelationShip" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblGenState">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="100" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblParent">
+          <Key>
+            <PropertyRef Name="ParentID" />
+          </Key>
+          <Property Name="ParentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="MaritalStautsID" Type="int" Nullable="false" />
+          <Property Name="GenderID" Type="int" Nullable="false" />
+          <Property Name="CNICNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RelationShipID" Type="int" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="ZipCode" Type="int" Nullable="false" />
+          <Property Name="CellNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TelephoneRes" Type="varchar" MaxLength="15" />
+          <Property Name="TelephoneOffice" Type="varchar" MaxLength="15" />
+          <Property Name="JobDetail" Type="varchar" MaxLength="500" />
+          <Property Name="ProfilePicture" Type="varchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="IPAddress" Type="varchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SchoolManagementSystem.dbo.View_GetParentByParentID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_GetParentByParentID">
+          <Key>
+            <PropertyRef Name="ParentID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="CNICNumber" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="MailingAddress" />
+            <PropertyRef Name="ZipCode" />
+            <PropertyRef Name="CellNumber" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaritalStauts" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" />
+          <Property Name="CNICNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RelationShip" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+          <Property Name="StateName" Type="varchar" MaxLength="100" />
+          <Property Name="CityName" Type="varchar" MaxLength="150" />
+          <Property Name="ZipCode" Type="int" Nullable="false" />
+          <Property Name="CellNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TelephoneRes" Type="varchar" MaxLength="15" />
+          <Property Name="TelephoneOffice" Type="varchar" MaxLength="15" />
+          <Property Name="JobDetail" Type="varchar" MaxLength="500" />
+          <Property Name="ProfilePicture" Type="varchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IPAddress" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_TblGenCity_TblGenState">
+          <End Role="TblGenState" Type="Self.TblGenState" Multiplicity="0..1" />
+          <End Role="TblGenCity" Type="Self.TblGenCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenState">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="TblGenCity">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblGenState_TblGenCountry">
+          <End Role="TblGenCountry" Type="Self.TblGenCountry" Multiplicity="0..1" />
+          <End Role="TblGenState" Type="Self.TblGenState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="TblGenState">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenCity">
+          <End Role="TblGenCity" Type="Self.TblGenCity" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenCity">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenCountry">
+          <End Role="TblGenCountry" Type="Self.TblGenCountry" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenGender">
+          <End Role="TblGenGender" Type="Self.TblGenGender" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenGender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenMaritalStauts">
+          <End Role="TblGenMaritalStauts" Type="Self.TblGenMaritalStauts" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenMaritalStauts">
+              <PropertyRef Name="MaritalStautsID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="MaritalStautsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenRelationShip">
+          <End Role="TblGenRelationShip" Type="Self.TblGenRelationShip" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenRelationShip">
+              <PropertyRef Name="RelationShipID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="RelationShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenState">
+          <End Role="TblGenState" Type="Self.TblGenState" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenState">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_FillDropdown" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Type" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetParentByParentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ParentID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SchoolManagementSystemModelStoreContainer">
+          <EntitySet Name="TblGenCity" EntityType="Self.TblGenCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblGenCountry" EntityType="Self.TblGenCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblGenGender" EntityType="Self.TblGenGender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblGenMaritalStauts" EntityType="Self.TblGenMaritalStauts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblGenRelationShip" EntityType="Self.TblGenRelationShip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblGenState" EntityType="Self.TblGenState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblParent" EntityType="Self.TblParent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_GetParentByParentID" EntityType="Self.View_GetParentByParentID" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_GetParentByParentID].[ParentID] AS [ParentID], 
+    [View_GetParentByParentID].[FirstName] AS [FirstName], 
+    [View_GetParentByParentID].[LastName] AS [LastName], 
+    [View_GetParentByParentID].[Email] AS [Email], 
+    [View_GetParentByParentID].[MaritalStauts] AS [MaritalStauts], 
+    [View_GetParentByParentID].[Gender] AS [Gender], 
+    [View_GetParentByParentID].[CNICNumber] AS [CNICNumber], 
+    [View_GetParentByParentID].[RelationShip] AS [RelationShip], 
+    [View_GetParentByParentID].[DateOfBirth] AS [DateOfBirth], 
+    [View_GetParentByParentID].[MailingAddress] AS [MailingAddress], 
+    [View_GetParentByParentID].[CountryName] AS [CountryName], 
+    [View_GetParentByParentID].[CountryCode] AS [CountryCode], 
+    [View_GetParentByParentID].[StateName] AS [StateName], 
+    [View_GetParentByParentID].[CityName] AS [CityName], 
+    [View_GetParentByParentID].[ZipCode] AS [ZipCode], 
+    [View_GetParentByParentID].[CellNumber] AS [CellNumber], 
+    [View_GetParentByParentID].[TelephoneRes] AS [TelephoneRes], 
+    [View_GetParentByParentID].[TelephoneOffice] AS [TelephoneOffice], 
+    [View_GetParentByParentID].[JobDetail] AS [JobDetail], 
+    [View_GetParentByParentID].[ProfilePicture] AS [ProfilePicture], 
+    [View_GetParentByParentID].[IsActive] AS [IsActive], 
+    [View_GetParentByParentID].[CreatedDate] AS [CreatedDate], 
+    [View_GetParentByParentID].[IPAddress] AS [IPAddress]
+    FROM [dbo].[View_GetParentByParentID] AS [View_GetParentByParentID]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_TblGenCity_TblGenState" Association="Self.FK_TblGenCity_TblGenState">
+            <End Role="TblGenState" EntitySet="TblGenState" />
+            <End Role="TblGenCity" EntitySet="TblGenCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblGenState_TblGenCountry" Association="Self.FK_TblGenState_TblGenCountry">
+            <End Role="TblGenCountry" EntitySet="TblGenCountry" />
+            <End Role="TblGenState" EntitySet="TblGenState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenCity" Association="Self.FK_TblParent_TblGenCity">
+            <End Role="TblGenCity" EntitySet="TblGenCity" />
+            <End Role="TblParent" EntitySet="TblParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenCountry" Association="Self.FK_TblParent_TblGenCountry">
+            <End Role="TblGenCountry" EntitySet="TblGenCountry" />
+            <End Role="TblParent" EntitySet="TblParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenGender" Association="Self.FK_TblParent_TblGenGender">
+            <End Role="TblGenGender" EntitySet="TblGenGender" />
+            <End Role="TblParent" EntitySet="TblParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenMaritalStauts" Association="Self.FK_TblParent_TblGenMaritalStauts">
+            <End Role="TblGenMaritalStauts" EntitySet="TblGenMaritalStauts" />
+            <End Role="TblParent" EntitySet="TblParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenRelationShip" Association="Self.FK_TblParent_TblGenRelationShip">
+            <End Role="TblGenRelationShip" EntitySet="TblGenRelationShip" />
+            <End Role="TblParent" EntitySet="TblParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenState" Association="Self.FK_TblParent_TblGenState">
+            <End Role="TblGenState" EntitySet="TblGenState" />
+            <End Role="TblParent" EntitySet="TblParent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SchoolManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TblGenCity">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="StateID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="TblGenState" Relationship="Self.FK_TblGenCity_TblGenState" FromRole="TblGenCity" ToRole="TblGenState" />
+          <NavigationProperty Name="TblParents" Relationship="Self.FK_TblParent_TblGenCity" FromRole="TblGenCity" ToRole="TblParent" />
+        </EntityType>
+        <EntityType Name="TblGenCountry">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CountryLanguage" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="TblGenStates" Relationship="Self.FK_TblGenState_TblGenCountry" FromRole="TblGenCountry" ToRole="TblGenState" />
+          <NavigationProperty Name="TblParents" Relationship="Self.FK_TblParent_TblGenCountry" FromRole="TblGenCountry" ToRole="TblParent" />
+        </EntityType>
+        <EntityType Name="TblGenGender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="TblParents" Relationship="Self.FK_TblParent_TblGenGender" FromRole="TblGenGender" ToRole="TblParent" />
+        </EntityType>
+        <EntityType Name="TblGenMaritalStaut">
+          <Key>
+            <PropertyRef Name="MaritalStautsID" />
+          </Key>
+          <Property Name="MaritalStautsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaritalStauts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="TblParents" Relationship="Self.FK_TblParent_TblGenMaritalStauts" FromRole="TblGenMaritalStauts" ToRole="TblParent" />
+        </EntityType>
+        <EntityType Name="TblGenRelationShip">
+          <Key>
+            <PropertyRef Name="RelationShipID" />
+          </Key>
+          <Property Name="RelationShipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RelationShip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="TblParents" Relationship="Self.FK_TblParent_TblGenRelationShip" FromRole="TblGenRelationShip" ToRole="TblParent" />
+        </EntityType>
+        <EntityType Name="TblGenState">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="TblGenCities" Relationship="Self.FK_TblGenCity_TblGenState" FromRole="TblGenState" ToRole="TblGenCity" />
+          <NavigationProperty Name="TblGenCountry" Relationship="Self.FK_TblGenState_TblGenCountry" FromRole="TblGenState" ToRole="TblGenCountry" />
+          <NavigationProperty Name="TblParents" Relationship="Self.FK_TblParent_TblGenState" FromRole="TblGenState" ToRole="TblParent" />
+        </EntityType>
+        <EntityType Name="TblParent">
+          <Key>
+            <PropertyRef Name="ParentID" />
+          </Key>
+          <Property Name="ParentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStautsID" Type="Int32" Nullable="false" />
+          <Property Name="GenderID" Type="Int32" Nullable="false" />
+          <Property Name="CNICNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RelationShipID" Type="Int32" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MailingAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="ZipCode" Type="Int32" Nullable="false" />
+          <Property Name="CellNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelephoneRes" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TelephoneOffice" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="JobDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblGenCity" Relationship="Self.FK_TblParent_TblGenCity" FromRole="TblParent" ToRole="TblGenCity" />
+          <NavigationProperty Name="TblGenCountry" Relationship="Self.FK_TblParent_TblGenCountry" FromRole="TblParent" ToRole="TblGenCountry" />
+          <NavigationProperty Name="TblGenGender" Relationship="Self.FK_TblParent_TblGenGender" FromRole="TblParent" ToRole="TblGenGender" />
+          <NavigationProperty Name="TblGenMaritalStaut" Relationship="Self.FK_TblParent_TblGenMaritalStauts" FromRole="TblParent" ToRole="TblGenMaritalStauts" />
+          <NavigationProperty Name="TblGenRelationShip" Relationship="Self.FK_TblParent_TblGenRelationShip" FromRole="TblParent" ToRole="TblGenRelationShip" />
+          <NavigationProperty Name="TblGenState" Relationship="Self.FK_TblParent_TblGenState" FromRole="TblParent" ToRole="TblGenState" />
+        </EntityType>
+        <EntityType Name="View_GetParentByParentID">
+          <Key>
+            <PropertyRef Name="ParentID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="CNICNumber" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="MailingAddress" />
+            <PropertyRef Name="ZipCode" />
+            <PropertyRef Name="CellNumber" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaritalStauts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CNICNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RelationShip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MailingAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CityName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="Int32" Nullable="false" />
+          <Property Name="CellNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelephoneRes" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TelephoneOffice" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="JobDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_TblGenCity_TblGenState">
+          <End Role="TblGenState" Type="Self.TblGenState" Multiplicity="0..1" />
+          <End Role="TblGenCity" Type="Self.TblGenCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenState">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="TblGenCity">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenCity">
+          <End Role="TblGenCity" Type="Self.TblGenCity" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenCity">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblGenState_TblGenCountry">
+          <End Role="TblGenCountry" Type="Self.TblGenCountry" Multiplicity="0..1" />
+          <End Role="TblGenState" Type="Self.TblGenState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="TblGenState">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenCountry">
+          <End Role="TblGenCountry" Type="Self.TblGenCountry" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenGender">
+          <End Role="TblGenGender" Type="Self.TblGenGender" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenGender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenMaritalStauts">
+          <End Role="TblGenMaritalStauts" Type="Self.TblGenMaritalStaut" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenMaritalStauts">
+              <PropertyRef Name="MaritalStautsID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="MaritalStautsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenRelationShip">
+          <End Role="TblGenRelationShip" Type="Self.TblGenRelationShip" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenRelationShip">
+              <PropertyRef Name="RelationShipID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="RelationShipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblParent_TblGenState">
+          <End Role="TblGenState" Type="Self.TblGenState" Multiplicity="1" />
+          <End Role="TblParent" Type="Self.TblParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenState">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="TblParent">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblGenCities" EntityType="Self.TblGenCity" />
+          <EntitySet Name="TblGenCountries" EntityType="Self.TblGenCountry" />
+          <EntitySet Name="TblGenGenders" EntityType="Self.TblGenGender" />
+          <EntitySet Name="TblGenMaritalStauts" EntityType="Self.TblGenMaritalStaut" />
+          <EntitySet Name="TblGenRelationShips" EntityType="Self.TblGenRelationShip" />
+          <EntitySet Name="TblGenStates" EntityType="Self.TblGenState" />
+          <EntitySet Name="TblParents" EntityType="Self.TblParent" />
+          <EntitySet Name="View_GetParentByParentID" EntityType="Self.View_GetParentByParentID" />
+          <AssociationSet Name="FK_TblGenCity_TblGenState" Association="Self.FK_TblGenCity_TblGenState">
+            <End Role="TblGenState" EntitySet="TblGenStates" />
+            <End Role="TblGenCity" EntitySet="TblGenCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenCity" Association="Self.FK_TblParent_TblGenCity">
+            <End Role="TblGenCity" EntitySet="TblGenCities" />
+            <End Role="TblParent" EntitySet="TblParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblGenState_TblGenCountry" Association="Self.FK_TblGenState_TblGenCountry">
+            <End Role="TblGenCountry" EntitySet="TblGenCountries" />
+            <End Role="TblGenState" EntitySet="TblGenStates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenCountry" Association="Self.FK_TblParent_TblGenCountry">
+            <End Role="TblGenCountry" EntitySet="TblGenCountries" />
+            <End Role="TblParent" EntitySet="TblParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenGender" Association="Self.FK_TblParent_TblGenGender">
+            <End Role="TblGenGender" EntitySet="TblGenGenders" />
+            <End Role="TblParent" EntitySet="TblParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenMaritalStauts" Association="Self.FK_TblParent_TblGenMaritalStauts">
+            <End Role="TblGenMaritalStauts" EntitySet="TblGenMaritalStauts" />
+            <End Role="TblParent" EntitySet="TblParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenRelationShip" Association="Self.FK_TblParent_TblGenRelationShip">
+            <End Role="TblGenRelationShip" EntitySet="TblGenRelationShips" />
+            <End Role="TblParent" EntitySet="TblParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblParent_TblGenState" Association="Self.FK_TblParent_TblGenState">
+            <End Role="TblGenState" EntitySet="TblGenStates" />
+            <End Role="TblParent" EntitySet="TblParents" />
+          </AssociationSet>
+          <FunctionImport Name="SP_FillDropdown" ReturnType="Collection(SchoolManagementSystemModel.SP_FillDropdown_Result)">
+            <Parameter Name="Type" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetParentByParentID" ReturnType="Collection(SchoolManagementSystemModel.SP_GetParentByParentID_Result)">
+            <Parameter Name="ParentID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_FillDropdown_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="Int32" Name="ExtraField" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetParentByParentID_Result">
+          <Property Type="Int32" Name="ParentID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaritalStauts" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="CNICNumber" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RelationShip" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="false" Precision="23" />
+          <Property Type="String" Name="MailingAddress" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="CountryName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="StateName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="ZipCode" Nullable="false" />
+          <Property Type="String" Name="CellNumber" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="TelephoneRes" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="TelephoneOffice" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="JobDetail" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ProfilePicture" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="IPAddress" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SchoolManagementSystemModelStoreContainer" CdmEntityContainer="SchoolManagementSystemEntities">
+          <EntitySetMapping Name="TblGenCities">
+            <EntityTypeMapping TypeName="SchoolManagementSystemModel.TblGenCity">
+              <MappingFragment StoreEntitySet="TblGenCity">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblGenCountries">
+            <EntityTypeMapping TypeName="SchoolManagementSystemModel.TblGenCountry">
+              <MappingFragment StoreEntitySet="TblGenCountry">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryLanguage" ColumnName="CountryLanguage" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblGenGenders">
+            <EntityTypeMapping TypeName="SchoolManagementSystemModel.TblGenGender">
+              <MappingFragment StoreEntitySet="TblGenGender">
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblGenMaritalStauts">
+            <EntityTypeMapping TypeName="SchoolManagementSystemModel.TblGenMaritalStaut">
+              <MappingFragment StoreEntitySet="TblGenMaritalStauts">
+                <ScalarProperty Name="MaritalStautsID" ColumnName="MaritalStautsID" />
+                <ScalarProperty Name="MaritalStauts" ColumnName="MaritalStauts" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblGenRelationShips">
+            <EntityTypeMapping TypeName="SchoolManagementSystemModel.TblGenRelationShip">
+              <MappingFragment StoreEntitySet="TblGenRelationShip">
+                <ScalarProperty Name="RelationShipID" ColumnName="RelationShipID" />
+                <ScalarProperty Name="RelationShip" ColumnName="RelationShip" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblGenStates">
+            <EntityTypeMapping TypeName="SchoolManagementSystemModel.TblGenState">
+              <MappingFragment StoreEntitySet="TblGenState">
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblParents">
+            <EntityTypeMapping TypeName="SchoolManagementSystemModel.TblParent">
+              <MappingFragment StoreEntitySet="TblParent">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="MaritalStautsID" ColumnName="MaritalStautsID" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="CNICNumber" ColumnName="CNICNumber" />
+                <ScalarProperty Name="RelationShipID" ColumnName="RelationShipID" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
+                <ScalarProperty Name="TelephoneRes" ColumnName="TelephoneRes" />
+                <ScalarProperty Name="TelephoneOffice" ColumnName="TelephoneOffice" />
+                <ScalarProperty Name="JobDetail" ColumnName="JobDetail" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_GetParentByParentID">
+            <EntityTypeMapping TypeName="SchoolManagementSystemModel.View_GetParentByParentID">
+              <MappingFragment StoreEntitySet="View_GetParentByParentID">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MaritalStauts" ColumnName="MaritalStauts" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CNICNumber" ColumnName="CNICNumber" />
+                <ScalarProperty Name="RelationShip" ColumnName="RelationShip" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
+                <ScalarProperty Name="TelephoneRes" ColumnName="TelephoneRes" />
+                <ScalarProperty Name="TelephoneOffice" ColumnName="TelephoneOffice" />
+                <ScalarProperty Name="JobDetail" ColumnName="JobDetail" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_FillDropdown" FunctionName="SchoolManagementSystemModel.Store.SP_FillDropdown">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolManagementSystemModel.SP_FillDropdown_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ExtraField" ColumnName="ExtraField" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetParentByParentID" FunctionName="SchoolManagementSystemModel.Store.SP_GetParentByParentID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolManagementSystemModel.SP_GetParentByParentID_Result">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MaritalStauts" ColumnName="MaritalStauts" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CNICNumber" ColumnName="CNICNumber" />
+                <ScalarProperty Name="RelationShip" ColumnName="RelationShip" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
+                <ScalarProperty Name="TelephoneRes" ColumnName="TelephoneRes" />
+                <ScalarProperty Name="TelephoneOffice" ColumnName="TelephoneOffice" />
+                <ScalarProperty Name="JobDetail" ColumnName="JobDetail" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
