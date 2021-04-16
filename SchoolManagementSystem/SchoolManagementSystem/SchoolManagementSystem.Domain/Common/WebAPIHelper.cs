@@ -57,27 +57,49 @@ namespace SchoolManagementSystem.Domain.Common
 		/// <param name="apiUrl">API Url</param>
 		/// <param name="postObject">The object to be created</param>
 		/// <returns>A Task with created item</returns>
-		public static async Task<T> PostRequest(string apiUrl, T postObject)
+		public static int PostRequest(string url, string uri, T postObject)
 		{
 			T result = null;
-
 			using (var client = new HttpClient())
 			{
-				var response = await client.PostAsync(apiUrl, postObject, new JsonMediaTypeFormatter()).ConfigureAwait(false);
+				client.BaseAddress = new Uri(url);
 
-				response.EnsureSuccessStatusCode();
+				//HTTP POST
+				var postTask = client.PostAsJsonAsync<T>(uri, postObject);
+				postTask.Wait();
 
-				await response.Content.ReadAsStringAsync().ContinueWith((Task<string> x) =>
+				var result1 = postTask.Result;
+				if (result1.IsSuccessStatusCode)
 				{
-					if (x.IsFaulted)
-						throw x.Exception;
-
-					result = JsonConvert.DeserializeObject<T>(x.Result);
-
-				});
+					
+				}
 			}
+			//using (var client = new HttpClient())
+			//{
+			//	var response = await client.PostAsync(apiUrl, postObject, new JsonMediaTypeFormatter()).ConfigureAwait(false);
 
-			return result;
+			//	response.EnsureSuccessStatusCode();
+
+			//	await response.Content.ReadAsStringAsync().ContinueWith((Task<string> x) =>
+			//	{
+			//		if (x.IsFaulted)
+			//			throw x.Exception;
+
+			//		result = JsonConvert.DeserializeObject<T>(x.Result);
+
+			//	});
+			//}
+			//string response = "";
+			//using (var client = new WebClient() { UseDefaultCredentials = true })
+			//{
+			//	string json = JsonConvert.SerializeObject(postObject, Formatting.Indented);
+
+			//	response = client.UploadString(apiUrl, json);
+			//}
+
+			//result = JsonConvert.DeserializeObject<T>(response);
+
+			return 1;
 		}
 
 		/// <summary>

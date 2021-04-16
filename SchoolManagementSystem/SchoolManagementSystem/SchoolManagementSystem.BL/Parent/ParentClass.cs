@@ -26,8 +26,8 @@ namespace SchoolManagementSystem.BL.Parent
 
 		public static ParentViewModel CreateParent(ParentViewModel objParentViewModel)
 		{
-			var result = Domain.Common.WebAPIHelper<ParentViewModel>.PostRequest("http://192.168.18.23:8086/api/parent/", objParentViewModel);
-			return result.Result;
+			var result = Domain.Common.WebAPIHelper<ParentViewModel>.PostRequest("http://192.168.18.23:8086/", "api/parent", objParentViewModel);
+			return null;
 		}
 	}
 }

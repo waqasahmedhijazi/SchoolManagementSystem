@@ -56,6 +56,7 @@ namespace SchoolManagementSystem.Controllers
 					}
 					else
 					{
+						objParentViewModel.IPAddress= CommonMethods.GetIPAddress();
 						ParentClass.CreateParent(objParentViewModel);
 					}
 

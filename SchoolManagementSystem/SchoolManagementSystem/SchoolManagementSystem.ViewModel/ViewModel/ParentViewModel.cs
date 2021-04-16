@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -88,6 +89,7 @@ namespace SchoolManagementSystem.ViewModel.ViewModel
 		public bool IsActive { get; set; } = true;
 
 		[Display(Name = "Select Profile Image")]
+		[JsonIgnore]
 		public HttpPostedFileBase ImagePath { get; set; }
 
 		public string ProfilePicture { get; set; }
