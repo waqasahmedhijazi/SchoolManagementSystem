@@ -29,7 +29,8 @@ namespace SchoolManagementSystem.WebApi.AutoMapper
 
         public static void Initialize(Action<IMapperConfigurationExpression> config)
         {
-            Initialize(new MapperConfiguration(config));
+            var cfg = new MapperConfiguration(config);
+            Initialize(cfg);
         }
 
         public static void Initialize(MapperConfiguration config)
