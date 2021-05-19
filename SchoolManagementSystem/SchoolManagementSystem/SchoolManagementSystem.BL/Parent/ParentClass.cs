@@ -1,5 +1,4 @@
-﻿
-using SchoolManagementSystem.ViewModel.ViewModel;
+﻿using SchoolManagementSystem.ViewModel.ViewModel;
 using SchoolManagementSystem.Model.Entities.ModelEntities;
 using System;
 using System.Collections.Generic;
@@ -16,24 +15,24 @@ namespace SchoolManagementSystem.BL.Parent
 	{
 		public static List<ParentViewModel> GetAllParents()
 		{
-			var result = Domain.Common.WebAPIHelper<List<ParentViewModel>>.Get("http://192.168.18.23:8086/", "api/parent");
+			var result = Domain.Common.WebAPIHelper<List<ParentViewModel>>.Get(Domain.Common.CommonMethods.WebAPIUrl, "api/parent");
 			return result;
 		}
 
 		public static ParentModelEntity GetParentByParentId(int Id)
 		{
-			var result = Domain.Common.WebAPIHelper<ParentModelEntity>.Get("http://192.168.18.23:8086/", "api/parent/GetParentByParentId?id=" + Id);
+			var result = Domain.Common.WebAPIHelper<ParentModelEntity>.Get(Domain.Common.CommonMethods.WebAPIUrl, "api/parent/GetParentByParentId?id=" + Id);
 			return result;
 		}
 		public static ParentViewModel FillParentDropDowns()
 		{
-			var result = Domain.Common.WebAPIHelper<ParentViewModel>.Get("http://192.168.18.23:8086/", "api/parent/" + 0);
+			var result = Domain.Common.WebAPIHelper<ParentViewModel>.Get(Domain.Common.CommonMethods.WebAPIUrl, "api/parent/" + 0);
 			return result;
 		}
 
 		public static ParentViewModel CreateParent(ParentViewModel objParentViewModel)
 		{
-			var result = Domain.Common.WebAPIHelper<ParentViewModel>.PostRequest("http://192.168.18.23:8086/", "api/parent", objParentViewModel);
+			var result = Domain.Common.WebAPIHelper<ParentViewModel>.PostRequest(Domain.Common.CommonMethods.WebAPIUrl, "api/parent", objParentViewModel);
 			return null;
 		}
 	}
