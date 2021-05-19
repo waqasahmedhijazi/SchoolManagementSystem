@@ -21,7 +21,8 @@ namespace SchoolManagementSystem.Controllers
 		// GET: Parent/Details/5
 		public ActionResult Details(int id)
 		{
-			return View();
+			Model.Entities.ModelEntities.ParentModelEntity objParentModelEntity = ParentClass.GetParentByParentId(id);
+			return View(objParentModelEntity);
 		}
 
 		// GET: Parent/Create

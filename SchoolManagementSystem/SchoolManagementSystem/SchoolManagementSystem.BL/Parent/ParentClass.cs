@@ -1,5 +1,6 @@
 ﻿
 using SchoolManagementSystem.ViewModel.ViewModel;
+using SchoolManagementSystem.Model.Entities.ModelEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace SchoolManagementSystem.BL.Parent
 		public static List<ParentViewModel> GetAllParents()
 		{
 			var result = Domain.Common.WebAPIHelper<List<ParentViewModel>>.Get("http://192.168.18.23:8086/", "api/parent");
+			return result;
+		}
+
+		public static ParentModelEntity GetParentByParentId(int Id)
+		{
+			var result = Domain.Common.WebAPIHelper<ParentModelEntity>.Get("http://192.168.18.23:8086/", "api/parent/GetParentByParentId?id=" + Id);
 			return result;
 		}
 		public static ParentViewModel FillParentDropDowns()

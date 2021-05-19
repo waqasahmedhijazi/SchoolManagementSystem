@@ -2116,6 +2116,10 @@
       <Project>{42282574-50a8-4fa0-bfab-6c32f2daac4b}</Project>
       <Name>SchoolManagementSystem.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SchoolManagementSystem.Model.Entities\SchoolManagementSystem.Model.Entities.csproj">
+      <Project>{90995ac6-66e8-4d66-b36f-b823daa93a88}</Project>
+      <Name>SchoolManagementSystem.Model.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SchoolManagementSystem.ViewModel\SchoolManagementSystem.ViewModel.csproj">
       <Project>{f99ee6b6-741e-4c7e-b5b8-df7cd92a5a9e}</Project>
       <Name>SchoolManagementSystem.ViewModel</Name>
