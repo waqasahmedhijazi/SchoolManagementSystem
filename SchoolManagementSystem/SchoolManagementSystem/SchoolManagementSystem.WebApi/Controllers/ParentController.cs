@@ -35,8 +35,8 @@ namespace SchoolManagementSystem.WebApi.Controllers
 		}
 
 		[HttpGet]
-		[Route("api/Parent/GetParentByParentId")]
-		public ParentModelEntity GetParentByParentId(int id)
+		[Route("api/Parent/GetParentDetailByParentId")]
+		public ParentModelEntity GetParentDetailByParentId(int id)
 		{
 			try
 			{
@@ -55,6 +55,53 @@ namespace SchoolManagementSystem.WebApi.Controllers
 			}
 		}
 
+		[HttpGet]
+		[Route("api/Parent/GetParentByParentId")]
+		public ParentViewModel GetParentByParentId(int id)
+		{
+			try
+			{
+				ParentViewModel objParentViewModel = new ParentViewModel();
+				using (var unitOfWork = new UnitOfWork())
+				{
+					var Parent = unitOfWork.Parents.GetAll(p => p.IsDeleted == false && p.ParentID == id).FirstOrDefault();
+					objParentViewModel = MapperWrapper.Mapper.Map<ParentViewModel>(Parent);
+					return objParentViewModel;
+				}
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		[HttpGet]
+		[Route("api/Parent/DeleteParentById")]
+		public TblParent DeleteParentById(int id)
+		{
+			try
+			{
+				using (var unitOfWork = new UnitOfWork())
+				{
+					var Parent = unitOfWork.Parents.GetAll(p => p.ParentID == id).FirstOrDefault();
+					if (Parent != null)
+					{
+						Parent.IsDeleted = true;
+						Parent.UpdatedDate = DateTime.Now;
+
+						unitOfWork.Parents.Update(Parent);
+						unitOfWork.Commit();
+					}
+
+					return Parent;
+				}
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
 		// GET: api/Parent/5
 		public ParentViewModel Get(int id)
 		{
@@ -63,9 +110,10 @@ namespace SchoolManagementSystem.WebApi.Controllers
 				ParentViewModel objParentViewModel = new ParentViewModel();
 				if (id > 0)
 				{
-
-
+					var Parent = unitOfWork.Parents.GetAll(p => p.IsDeleted == false && p.ParentID == id).FirstOrDefault();
+					objParentViewModel = MapperWrapper.Mapper.Map<ParentViewModel>(Parent);
 				}
+
 				var lstLookups = unitOfWork.FillParentDropdowns.ExecWithStoreProcedure("exec SP_FillDropdown @type", new SqlParameter("Type", 1)).ToList();
 				objParentViewModel.FillMaritalStauts = FilterDropDowns(lstLookups, 1);
 				objParentViewModel.FillGender = FilterDropDowns(lstLookups, 2);
@@ -81,10 +129,20 @@ namespace SchoolManagementSystem.WebApi.Controllers
 		public void Post(ParentViewModel objParentViewModel)
 		{
 			var objparent = MapperWrapper.Mapper.Map<TblParent>(objParentViewModel);
-			objparent.CreatedDate = DateTime.Now;
+
 			using (var unitOfWork = new UnitOfWork())
 			{
-				unitOfWork.Parents.Insert(objparent);
+				objparent.CreatedDate = DateTime.Now;
+				if (objParentViewModel.ParentId > 0)
+				{
+					objparent.UpdatedDate = DateTime.Now;
+					unitOfWork.Parents.Update(objparent);
+				}
+				else
+				{
+
+					unitOfWork.Parents.Insert(objparent);
+				}
 				unitOfWork.Commit();
 			}
 		}

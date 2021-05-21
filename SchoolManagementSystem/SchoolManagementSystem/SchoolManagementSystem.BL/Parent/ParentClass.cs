@@ -20,9 +20,14 @@ namespace SchoolManagementSystem.BL.Parent
 			return result;
 		}
 
-		public static ParentModelEntity GetParentByParentId(int Id)
+		public static ParentModelEntity GetParentDetailByParentId(int Id)
 		{
-			var result = Domain.Common.WebAPIHelper<ParentModelEntity>.Get("http://192.168.18.23:8086/", "api/parent/GetParentByParentId?id=" + Id);
+			var result = Domain.Common.WebAPIHelper<ParentModelEntity>.Get("http://192.168.18.23:8086/", "api/parent/GetParentDetailByParentId?id=" + Id);
+			return result;
+		}
+		public static ParentViewModel GetParentByParentId(int Id)
+		{
+			var result = Domain.Common.WebAPIHelper<ParentViewModel>.Get("http://192.168.18.23:8086/", "api/parent?id=" + Id);
 			return result;
 		}
 		public static ParentViewModel FillParentDropDowns()
@@ -35,6 +40,12 @@ namespace SchoolManagementSystem.BL.Parent
 		{
 			var result = Domain.Common.WebAPIHelper<ParentViewModel>.PostRequest("http://192.168.18.23:8086/", "api/parent", objParentViewModel);
 			return null;
+		}
+
+		public static int DeleteParent(int id)
+		{
+			var result = Domain.Common.WebAPIHelper<ParentViewModel>.Get("http://192.168.18.23:8086/", "api/parent/DeleteParentById?id=" + id);
+			return 1;
 		}
 	}
 }

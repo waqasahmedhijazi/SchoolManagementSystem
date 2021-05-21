@@ -21,7 +21,7 @@ namespace SchoolManagementSystem.Controllers
 		// GET: Parent/Details/5
 		public ActionResult Details(int id)
 		{
-			Model.Entities.ModelEntities.ParentModelEntity objParentModelEntity = ParentClass.GetParentByParentId(id);
+			Model.Entities.ModelEntities.ParentModelEntity objParentModelEntity = ParentClass.GetParentDetailByParentId(id);
 			return View(objParentModelEntity);
 		}
 
@@ -52,8 +52,8 @@ namespace SchoolManagementSystem.Controllers
 
 					if (objParentViewModel.ParentId != 0)
 					{
-						//objParent.UpdatedDate = DateTime.Now;
-						//clsParent.UpdateParent(objParent);
+						objParentViewModel.IPAddress = CommonMethods.GetIPAddress();
+						ParentClass.CreateParent(objParentViewModel);
 					}
 					else
 					{
@@ -79,7 +79,8 @@ namespace SchoolManagementSystem.Controllers
 		// GET: Parent/Edit/5
 		public ActionResult Edit(int id)
 		{
-			return View();
+			ParentViewModel objParentViewModel = ParentClass.GetParentByParentId(id);
+			return View("Create",objParentViewModel);
 		}
 
 		// POST: Parent/Edit/5
@@ -101,23 +102,26 @@ namespace SchoolManagementSystem.Controllers
 		// GET: Parent/Delete/5
 		public ActionResult Delete(int id)
 		{
-			return View();
+			if (id > 0)
+				ParentClass.DeleteParent(id);
+			return RedirectToAction("Index");
 		}
 
 		// POST: Parent/Delete/5
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection)
-		{
-			try
-			{
-				// TODO: Add delete logic here
+		//[HttpPost]
+		//public ActionResult Delete(int id)
+		//{
+		//	try
+		//	{
+		//		// TODO: Add delete logic here
+				
 
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
-		}
+		//		return RedirectToAction("Index");
+		//	}
+		//	catch
+		//	{
+		//		return View();
+		//	}
+		//}
 	}
 }
