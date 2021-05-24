@@ -61,11 +61,22 @@ namespace SchoolManagementSystem.WebApi.Controllers
 		{
 			try
 			{
-				ParentViewModel objParentViewModel = new ParentViewModel();
 				using (var unitOfWork = new UnitOfWork())
 				{
-					var Parent = unitOfWork.Parents.GetAll(p => p.IsDeleted == false && p.ParentID == id).FirstOrDefault();
-					objParentViewModel = MapperWrapper.Mapper.Map<ParentViewModel>(Parent);
+					ParentViewModel objParentViewModel = new ParentViewModel();
+					if (id > 0)
+					{
+						var Parent = unitOfWork.Parents.GetAll(p => p.IsDeleted == false && p.ParentID == id).FirstOrDefault();
+						objParentViewModel = MapperWrapper.Mapper.Map<ParentViewModel>(Parent);
+					}
+
+					var lstLookups = unitOfWork.FillParentDropdowns.ExecWithStoreProcedure("exec SP_FillDropdown @type", new SqlParameter("Type", 1)).ToList();
+					objParentViewModel.FillMaritalStauts = FilterDropDowns(lstLookups, 1);
+					objParentViewModel.FillGender = FilterDropDowns(lstLookups, 2);
+					objParentViewModel.FillRelationShip = FilterDropDowns(lstLookups, 3);
+					objParentViewModel.FillCountries = FilterDropDowns(lstLookups, 4);
+					objParentViewModel.FillStates = FilterDropDowns(lstLookups, 5);
+					objParentViewModel.FillCites = FilterDropDowns(lstLookups, 6);
 					return objParentViewModel;
 				}
 			}

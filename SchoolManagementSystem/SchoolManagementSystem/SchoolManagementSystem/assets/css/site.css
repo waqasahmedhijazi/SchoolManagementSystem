@@ -33,5 +33,8 @@
 
 .custom-table th {
     color: #fff !important;
-    background-color: #6c757d !important;
+    background-color: #38414a !important;
+}
+a.action-icon, a.action-icon:hover {
+    color: #19bc9c !important;
 }

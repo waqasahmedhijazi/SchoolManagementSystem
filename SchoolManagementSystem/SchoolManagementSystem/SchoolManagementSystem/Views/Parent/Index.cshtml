@@ -77,7 +77,7 @@
                                             <td class="text-center">
 
                                                 <a href="@Url.Action("Edit", "Parent", new {id= @item.ParentId})" class="action-icon">
-                                                    <i class="mdi mdi-square-edit-outline"></i>
+                                                    <i class="fe-edit"></i>
                                                 </a>
                                                 <a href="@Url.Action("Details", "Parent", new {id= @item.ParentId})" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                                 <a href="@Url.Action("Delete", "Parent", new {id= @item.ParentId})" onclick="return confirm('Are you sure you want to delete parent?')" class="action-icon"> <i class="mdi mdi-delete"></i></a>
@@ -109,9 +109,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             toastr.options.closeButton = true;
-            var messageType = '@ViewBag.MessageType';
+            var messageType = '@TempData["MessageType"]';
             if (messageType != '') {
-                toastr.success('@ViewBag.Message', 'Success')
+                toastr.success('@TempData["Message"]', 'Success')
             }
         });
 

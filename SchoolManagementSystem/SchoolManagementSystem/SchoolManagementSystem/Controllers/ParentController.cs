@@ -14,22 +14,47 @@ namespace SchoolManagementSystem.Controllers
 		// GET: Parent
 		public ActionResult Index()
 		{
-			var result = BL.Parent.ParentClass.GetAllParents();
-			return View(result);
+			try
+			{
+				var result = BL.Parent.ParentClass.GetAllParents();
+				return View(result);
+			}
+			catch (Exception ex)
+			{
+				TempData["MessageType"] = ViewBag.MessageType = "error";
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") });
+			}
 		}
 
 		// GET: Parent/Details/5
 		public ActionResult Details(int id)
 		{
-			Model.Entities.ModelEntities.ParentModelEntity objParentModelEntity = ParentClass.GetParentDetailByParentId(id);
-			return View(objParentModelEntity);
+			try
+			{
+				Model.Entities.ModelEntities.ParentModelEntity objParentModelEntity = ParentClass.GetParentDetailByParentId(id);
+				return View(objParentModelEntity);
+			}
+			catch (Exception ex)
+			{
+				TempData["MessageType"] = ViewBag.MessageType = "error";
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") },JsonRequestBehavior.AllowGet);
+			}
 		}
 
 		// GET: Parent/Create
 		public ActionResult Create()
 		{
-			var ListParentViewModel = ParentClass.FillParentDropDowns();
-			return View(ListParentViewModel);
+
+			try
+			{
+				var ListParentViewModel = ParentClass.FillParentDropDowns();
+				return View(ListParentViewModel);
+			}
+			catch (Exception ex)
+			{
+				TempData["MessageType"] = ViewBag.MessageType = "error";
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") });
+			}
 		}
 
 		// POST: Parent/Create
@@ -48,8 +73,6 @@ namespace SchoolManagementSystem.Controllers
 						FileName = FileUpload.UploadParentProfileImage(File);
 						objParentViewModel.ProfilePicture = FileName;
 					}
-					//var objParent = _mapper.Map<TblParent>(objParentViewModel);
-
 					if (objParentViewModel.ParentId != 0)
 					{
 						objParentViewModel.IPAddress = CommonMethods.GetIPAddress();
@@ -60,68 +83,56 @@ namespace SchoolManagementSystem.Controllers
 						objParentViewModel.IPAddress= CommonMethods.GetIPAddress();
 						ParentClass.CreateParent(objParentViewModel);
 					}
-
 					TempData["MessageType"] = ViewBag.MessageType = "success";
-					TempData["Message"] = ViewBag.Message = "Data Saved Successfully";
+					TempData["Message"] = ViewBag.Message = "Parent information saved successfully.";
 					return RedirectToAction("Index");
 				}
 				else
 				{
+					TempData["MessageType"] = ViewBag.MessageType = "error";
 					return Json(new { message = "The model is not valid, please fill form correctly.", url = Url.Action("Index", "Parent") });
 				}
 			}
 			catch (Exception ex)
 			{
-				throw;
+				TempData["MessageType"] = ViewBag.MessageType = "error";
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") });
 			}
 		}
 
 		// GET: Parent/Edit/5
 		public ActionResult Edit(int id)
 		{
-			ParentViewModel objParentViewModel = ParentClass.GetParentByParentId(id);
-			return View("Create",objParentViewModel);
-		}
-
-		// POST: Parent/Edit/5
-		[HttpPost]
-		public ActionResult Edit(int id, FormCollection collection)
-		{
 			try
 			{
-				// TODO: Add update logic here
-
-				return RedirectToAction("Index");
+				ParentViewModel objParentViewModel = ParentClass.GetParentByParentId(id);
+				return View("Create", objParentViewModel);
 			}
-			catch
+			catch (Exception ex)
 			{
-				return View();
+				TempData["MessageType"] = ViewBag.MessageType = "error";
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") });
 			}
 		}
 
 		// GET: Parent/Delete/5
 		public ActionResult Delete(int id)
 		{
-			if (id > 0)
-				ParentClass.DeleteParent(id);
-			return RedirectToAction("Index");
+			try
+			{
+				if (id > 0)
+					ParentClass.DeleteParent(id);
+
+				TempData["MessageType"] = ViewBag.MessageType = "success";
+				TempData["Message"] = ViewBag.Message = "Parent deleted successfully.";
+
+				return RedirectToAction("Index");
+			}
+			catch (Exception ex)
+			{
+				TempData["MessageType"] = ViewBag.MessageType = "error";
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") });
+			}
 		}
-
-		// POST: Parent/Delete/5
-		//[HttpPost]
-		//public ActionResult Delete(int id)
-		//{
-		//	try
-		//	{
-		//		// TODO: Add delete logic here
-				
-
-		//		return RedirectToAction("Index");
-		//	}
-		//	catch
-		//	{
-		//		return View();
-		//	}
-		//}
 	}
 }

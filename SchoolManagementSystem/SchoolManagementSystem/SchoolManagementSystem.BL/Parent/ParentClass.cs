@@ -26,8 +26,8 @@ namespace SchoolManagementSystem.BL.Parent
 		}
 		public static ParentViewModel GetParentByParentId(int Id)
 		{
-			var result = Domain.Common.WebAPIHelper<ParentViewModel>.Get("http://192.168.18.23:8086/", "api/parent?id=" + Id);
-			var result = Domain.Common.WebAPIHelper<ParentModelEntity>.Get(Domain.Common.CommonMethods.WebAPIUrl, "api/parent/GetParentByParentId?id=" + Id);
+			//var result = Domain.Common.WebAPIHelper<ParentViewModel>.Get("http://192.168.18.23:8086/", "api/parent?id=" + Id);
+			var result = Domain.Common.WebAPIHelper<ParentViewModel>.Get(Domain.Common.CommonMethods.WebAPIUrl, "api/parent/GetParentByParentId?id=" + Id);
 
 			return result;
 		}
