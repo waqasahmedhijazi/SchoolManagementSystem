@@ -1875,6 +1875,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="AutoMapper\AutoFacModule.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\ParentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2096,6 +2097,8 @@
     <Content Include="Views\Shared\_TopNavBar.cshtml" />
     <Content Include="Views\Student\StudentList.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
+    <Content Include="Views\Country\_CreateUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

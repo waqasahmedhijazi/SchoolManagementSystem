@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\SchoolManagementSystemWebApi\SchoolManagementSystem\SchoolManagementSystem.Model.Context\Database\SchoolManagementSystemModel.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\SchoolManagementSystem\SchoolManagementSystem\SchoolManagementSystem\SchoolManagementSystem.Model.Context\Database\SchoolManagementSystemModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

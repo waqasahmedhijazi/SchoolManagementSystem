@@ -1,0 +1,131 @@
+﻿@model IEnumerable<SchoolManagementSystem.ViewModel.ViewModel.CountryViewModel>
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box py-3">
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="header-title">Manage Countries</h4>
+
+							<div class="page-title-right">
+								<ol class="breadcrumb m-0">
+									<li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
+									<li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+									<li class="breadcrumb-item active">Starter</li>
+								</ol>
+							</div>
+
+							<a class="btn btn-success waves-effect waves-light" href="@Url.Action("Create", "Country")" data-toggle="modal" data-target="#exampleModal">
+								<span class="btn-label"><i class="mdi mdi-account-plus"></i></span>Add New
+							</a>
+							@*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#parentmodel">
+									Add
+								</button>*@
+							<table id="datatable-buttons" class="table table-centered table-nowrap table-striped table-bordered custom-table">
+								<thead>
+									<tr>
+										<th>Country Name</th>
+										<th>Country Code</th>
+										<th>Country Language</th>
+										<th class="text-center">Status</th>
+										<th class="text-center">Action</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									@foreach (var item in Model)
+									{
+										<tr>
+											<td>
+												@item.CountryName
+											</td>
+											<td>
+												@item.CountryCode
+											</td>
+											<td>
+												@item.CountryLanguage
+											</td>
+
+											<td class="text-center">
+												@if (item.IsActive)
+												{
+													<span class="badge label-table badge-success">Active</span>
+												}
+												else
+												{
+													<span class="badge label-table badge-danger">Inactive</span>
+												}
+
+											</td>
+
+											<td class="text-center">
+
+												<a href="@Url.Action("Edit", "Country", new {id= @item.CountryID})" class="action-icon">
+													<i class="fe-edit"></i>
+												</a>
+												<a href="@Url.Action("Details", "Country", new {id= @item.CountryID})" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+												<a href="@Url.Action("Delete", "Country", new {id= @item.CountryID})" onclick="return confirm('Are you sure you want to delete country?')" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+
+
+											</td>
+										</tr>
+									}
+								</tbody>
+							</table>
+
+						</div> <!-- end card body-->
+					</div> <!-- end card -->
+				</div><!-- end col-->
+			</div>
+			<!-- end row-->
+		</div>
+	</div>
+</div>
+
+@section Styles {
+	@Styles.Render("~/css/datatables-css")
+}
+
+@section Scripts {
+	@Scripts.Render("~/js/datatables-js")
+
+	<script type="text/javascript">
+        $(document).ready(function () {
+            toastr.options.closeButton = true;
+            var messageType = '@TempData["MessageType"]';
+            if (messageType != '') {
+                toastr.success('@TempData["Message"]', 'Success')
+            }
+        });
+
+	</script>
+}
+
+<div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add/Update Country</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				@Html.Partial("_CreateUpdate", new SchoolManagementSystem.ViewModel.ViewModel.CountryViewModel())
+
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+</script>

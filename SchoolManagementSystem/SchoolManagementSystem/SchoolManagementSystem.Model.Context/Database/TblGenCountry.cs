@@ -25,8 +25,8 @@ namespace SchoolManagementSystem.Model.Context.Database
         public string CountryName { get; set; }
         public string CountryCode { get; set; }
         public string CountryLanguage { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblGenState> TblGenStates { get; set; }

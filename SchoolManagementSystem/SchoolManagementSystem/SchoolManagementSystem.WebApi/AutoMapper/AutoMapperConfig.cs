@@ -25,7 +25,7 @@ namespace SchoolManagementSystem.WebApi.AutoMapper
 					.ForMember(dest => dest.TblGenMaritalStaut, opt => opt.Ignore())
 					.ForMember(dest => dest.TblGenRelationShip, opt => opt.Ignore());
 
-				cfg.CreateMap<TblParent,ParentViewModel>()
+				cfg.CreateMap<TblParent, ParentViewModel>()
 					.ForMember(dest => dest.FillCountries, opt => opt.Ignore())
 					.ForMember(dest => dest.FillStates, opt => opt.Ignore())
 					.ForMember(dest => dest.FillCites, opt => opt.Ignore())
@@ -36,7 +36,14 @@ namespace SchoolManagementSystem.WebApi.AutoMapper
 					.ForMember(dest => dest.ImagePath, opt => opt.Ignore())
 					;
 
-				cfg.CreateMap<SP_GetParentByParentID_Result,ParentModelEntity > ();
+				cfg.CreateMap<SP_GetParentByParentID_Result, ParentModelEntity>();
+				cfg.CreateMap<TblGenCountry, CountryViewModel>()
+				.ForMember(dest => dest.EncryptedCountryID, opt => opt.Ignore());
+
+				cfg.CreateMap<CountryViewModel, TblGenCountry>()
+				.ForMember(dest => dest.TblParents, opt => opt.Ignore())
+				.ForMember(dest => dest.TblGenStates, opt => opt.Ignore())
+				.ForMember(dest => dest.IsDeleted, opt => opt.Ignore()); 
 
 			});
 

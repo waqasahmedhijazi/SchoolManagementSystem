@@ -35,7 +35,7 @@ namespace SchoolManagementSystem.Model.Context.Database
         public string JobDetail { get; set; }
         public string ProfilePicture { get; set; }
         public bool IsActive { get; set; }
-        public System.DateTime CreatedDate { get; set; }
+        public string CreatedDate { get; set; }
         public string IPAddress { get; set; }
     }
 }
