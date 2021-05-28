@@ -67,7 +67,16 @@ namespace SchoolManagementSystem.Controllers
         // GET: Country/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            try
+            {
+                CountryViewModel objCountryViewModel = ParentClass
+                return View("Create", objParentViewModel);
+            }
+            catch (Exception ex)
+            {
+                TempData["MessageType"] = ViewBag.MessageType = "error";
+                return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") },JsonRequestBehavior.AllowGet);
+            }
         }
 
         // POST: Country/Edit/5
