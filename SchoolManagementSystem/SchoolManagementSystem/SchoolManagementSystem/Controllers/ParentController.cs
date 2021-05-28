@@ -53,7 +53,7 @@ namespace SchoolManagementSystem.Controllers
 			catch (Exception ex)
 			{
 				TempData["MessageType"] = ViewBag.MessageType = "error";
-				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") });
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") }, JsonRequestBehavior.AllowGet);
 			}
 		}
 
@@ -90,13 +90,13 @@ namespace SchoolManagementSystem.Controllers
 				else
 				{
 					TempData["MessageType"] = ViewBag.MessageType = "error";
-					return Json(new { message = "The model is not valid, please fill form correctly.", url = Url.Action("Index", "Parent") });
+					return Json(new { message = "The model is not valid, please fill form correctly.", url = Url.Action("Index", "Parent") }, JsonRequestBehavior.AllowGet);
 				}
 			}
 			catch (Exception ex)
 			{
 				TempData["MessageType"] = ViewBag.MessageType = "error";
-				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") });
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") }, JsonRequestBehavior.AllowGet);
 			}
 		}
 
@@ -111,7 +111,7 @@ namespace SchoolManagementSystem.Controllers
 			catch (Exception ex)
 			{
 				TempData["MessageType"] = ViewBag.MessageType = "error";
-				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") });
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") }, JsonRequestBehavior.AllowGet);
 			}
 		}
 
@@ -131,7 +131,7 @@ namespace SchoolManagementSystem.Controllers
 			catch (Exception ex)
 			{
 				TempData["MessageType"] = ViewBag.MessageType = "error";
-				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") });
+				return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") }, JsonRequestBehavior.AllowGet);
 			}
 		}
 	}
