@@ -12,34 +12,35 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="form-group">
+	
+	<div class="">
 
 		@Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "control-label col-md-4" })
-		<div class="col-md-8">
+		<div class="col-md-12">
 			@Html.EditorFor(model => model.CountryName, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.CountryName, "", new { @class = "text-danger" })
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="pt-1">
 		@Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-md-4" })
-		<div class="col-md-8">
+		<div class="col-md-12">
 			@Html.EditorFor(model => model.CountryCode, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="pt-1">
 		@Html.LabelFor(model => model.CountryLanguage, htmlAttributes: new { @class = "control-label col-md-4" })
-		<div class="col-md-8">
+		<div class="col-md-12">
 			@Html.EditorFor(model => model.CountryLanguage, new { htmlAttributes = new { @class = "form-control" } })
 			@Html.ValidationMessageFor(model => model.CountryLanguage, "", new { @class = "text-danger" })
 		</div>
 	</div>
-	<div class="form-group">
+	<div class=" clearfix pt-1">
 		@Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-12" })
-		<div class="col-md-8">
+		<div class="col-md-12">
 			@Html.CheckBoxFor(model => model.IsActive, htmlAttributes: new { @class = "form-control", @data_toggle = "toggle", @data_on = "Active", @data_off = "Inactive", @data_onstyle = "success" })
 
+			@Html.HiddenFor(model => model.CountryID)
 		</div>
 	</div>
 	<div class="modal-footer">
@@ -55,6 +56,6 @@
 <link href="~/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
 
 <script src="~/assets/libs/flatpickr/flatpickr.min.js"></script>
-<link href="~/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-<script src="~/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="~/assets/js/pages/form-pickers.init.js"></script>
+@*<link href="~/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+	<script src="~/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+	<script src="~/assets/js/pages/form-pickers.init.js"></script>*@

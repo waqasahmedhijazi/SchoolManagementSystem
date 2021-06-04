@@ -11,59 +11,79 @@ using System.Web.Http;
 
 namespace SchoolManagementSystem.WebApi.Controllers
 {
-    public class CountryController : ApiController
-    {
-        // GET: api/Country
-        public IEnumerable<TblGenCountry> Get()
-        {
-            try
-            {
-                using (var unitOfWork = new UnitOfWork())
-                {
+	public class CountryController : ApiController
+	{
+		// GET: api/Country
+		public IEnumerable<TblGenCountry> Get()
+		{
+			try
+			{
+				using (var unitOfWork = new UnitOfWork())
+				{
 
-                    var Countries = unitOfWork.Countries.GetAll(p => p.IsDeleted == false).ToList();
-                    return Countries;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+					var Countries = unitOfWork.Countries.GetAll(p => p.IsDeleted == false).ToList();
+					return Countries;
+				}
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
 
-        // GET: api/Country/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+		// GET: api/Country/5
+		public string Get(int id)
+		{
+			return "value";
+		}
 
-        // POST: api/Country
-        public void Post(CountryViewModel objCountryViewModel)
-        {
-            var objCountry = MapperWrapper.Mapper.Map<TblGenCountry>(objCountryViewModel);
+		[HttpGet]
+		[Route("api/Country/GetCountryByCountryId")]
+		public CountryViewModel GetCountryByCountryId(int id)
+		{
+			try
+			{
+				using (var unitOfWork = new UnitOfWork())
+				{
+					CountryViewModel objCountryViewModel = new CountryViewModel();
+					var Country = unitOfWork.Countries.GetAll(p => p.IsDeleted == false && p.CountryID == id).FirstOrDefault();
+					objCountryViewModel = MapperWrapper.Mapper.Map<CountryViewModel>(Country);
+					return objCountryViewModel;
+				}
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
 
-            using (var unitOfWork = new UnitOfWork())
-            {
-                if (objCountryViewModel.CountryID > 0)
-                {
-                    unitOfWork.Countries.Update(objCountry);
-                }
-                else
-                {
-                    unitOfWork.Countries.Insert(objCountry);
-                }
-                unitOfWork.Commit();
-            }
-        }
+		// POST: api/Country
+		public void Post(CountryViewModel objCountryViewModel)
+		{
+			var objCountry = MapperWrapper.Mapper.Map<TblGenCountry>(objCountryViewModel);
 
-        // PUT: api/Country/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+			using (var unitOfWork = new UnitOfWork())
+			{
+				if (objCountryViewModel.CountryID > 0)
+				{
+					unitOfWork.Countries.Update(objCountry);
+				}
+				else
+				{
+					unitOfWork.Countries.Insert(objCountry);
+				}
+				unitOfWork.Commit();
+			}
+		}
 
-        // DELETE: api/Country/5
-        public void Delete(int id)
-        {
-        }
-    }
+		// PUT: api/Country/5
+		public void Put(int id, [FromBody] string value)
+		{
+		}
+
+		// DELETE: api/Country/5
+		public void Delete(int id)
+		{
+		}
+	}
 }

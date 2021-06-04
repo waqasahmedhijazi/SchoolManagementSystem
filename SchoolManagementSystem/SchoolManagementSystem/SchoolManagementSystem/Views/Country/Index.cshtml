@@ -66,10 +66,10 @@
 
 											<td class="text-center">
 
-												<a href="@Url.Action("Edit", "Country", new {id= @item.CountryID})" class="action-icon">
+												<a href="#" onclick="GetCountryByCountryId(@item.CountryID)" class="action-icon">
 													<i class="fe-edit"></i>
 												</a>
-												<a href="@Url.Action("Details", "Country", new {id= @item.CountryID})" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+												@*<a href="@Url.Action("Details", "Country", new {id= @item.CountryID})" class="action-icon"> <i class="mdi mdi-eye"></i></a>*@
 												<a href="@Url.Action("Delete", "Country", new {id= @item.CountryID})" onclick="return confirm('Are you sure you want to delete country?')" class="action-icon"> <i class="mdi mdi-delete"></i></a>
 
 
@@ -116,16 +116,64 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" id="countrymodel">
 
 				@Html.Partial("_CreateUpdate", new SchoolManagementSystem.ViewModel.ViewModel.CountryViewModel())
 
 			</div>
-			
+
 		</div>
 	</div>
 </div>
 
-<script type="text/javascript">
+<script>
+	$(document).ready(function () {
+	});
+	function GetCountryByCountryId(id) {
+		$.ajax({
+			url: "/Country/Edit/" + id,
+			typr: "GET",
+			//contentType: "application/html;charset=UTF-8",
+			dataType: "html",
+			success: function (result) {
 
-</script>
+				$('#countrymodel').html('');
+				$('#countrymodel').html(result);
+				$('#exampleModal').modal('show');
+			},
+			error: function (errormessage) {
+				alert(errormessage.responseText);
+			}
+		});
+		return false;  
+	}
+
+	function Update() {
+		var countryObj = {
+			CountryId: $('#CountryId').val(),
+			CountryName: $('#CountryName').val(),
+			CountryCode: $('#CountryCode').val(),
+			CountryLanguage: $('#CountryLanguage').val(),
+			IsActive: $('#IsActive').val(),
+		};
+		$.ajax({
+			url: "/Country/Create",
+			data: JSON.stringify(empObj),
+			type: "POST",
+			contentType: "application/json;charset=utf-8",
+			dataType: "json",
+			success: function (countryObj) {
+				
+				$('#countrymodel').modal('hide');
+				$('#CountryId').val("");
+				$('#CountryName').val("");
+				$('#CountryCode').val("");
+				$('#CountryLanguage').val("");
+				$('#IsActive').val("");
+			},
+			error: function (errormessage) {
+				alert(errormessage.responseText);
+			}
+		});
+	}  
+</script>  

@@ -20,5 +20,13 @@ namespace SchoolManagementSystem.BL.Country
 			var result = Domain.Common.WebAPIHelper<CountryViewModel>.PostRequest(Domain.Common.CommonMethods.WebAPIUrl, "api/Country", objCountryViewModel);
 			return null;
 		}
+
+		public static CountryViewModel GetCountryByCountryId(int Id)
+		{
+			//var result = Domain.Common.WebAPIHelper<ParentViewModel>.Get("http://192.168.18.23:8086/", "api/parent?id=" + Id);
+			var result = Domain.Common.WebAPIHelper<CountryViewModel>.Get(Domain.Common.CommonMethods.WebAPIUrl, "api/Country/GetCountryByCountryId?id=" + Id);
+
+			return result;
+		}
 	}
 }

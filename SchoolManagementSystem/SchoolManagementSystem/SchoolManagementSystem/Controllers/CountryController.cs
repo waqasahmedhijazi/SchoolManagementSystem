@@ -69,13 +69,23 @@ namespace SchoolManagementSystem.Controllers
         {
             try
             {
-                CountryViewModel objCountryViewModel = ParentClass
-                return View("Create", objParentViewModel);
+                // TODO: Add update logic here
+                CountryViewModel objCountryViewModel = new CountryViewModel();
+                objCountryViewModel = CountryClass.GetCountryByCountryId(id);
+                if (objCountryViewModel != null)
+                {
+                    return PartialView("_CreateUpdate", objCountryViewModel);
+                }
+                else
+                {
+                    TempData["MessageType"] = ViewBag.MessageType = "error";
+                    return Json(new { message = "There is no record found for this Country Id.", url = Url.Action("Index", "Country") }, JsonRequestBehavior.AllowGet);
+                }
             }
             catch (Exception ex)
             {
                 TempData["MessageType"] = ViewBag.MessageType = "error";
-                return Json(new { message = ex.ToString(), url = Url.Action("Index", "Parent") },JsonRequestBehavior.AllowGet);
+                return Json(new { message = ex.ToString(), url = Url.Action("Index", "Country") }, JsonRequestBehavior.AllowGet);
             }
         }
 
